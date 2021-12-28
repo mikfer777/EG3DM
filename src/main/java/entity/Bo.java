@@ -17,7 +17,7 @@ public class Bo {
     @Column(name = "titre_bo")
     private String titreBo;
     @Basic
-    @Column(name = "bo_groupe_id" , insertable = false, updatable = false)
+    @Column(name = "bo_groupe_id", insertable = false, updatable = false)
     private long boGroupeId;
     @ManyToOne
     @JoinColumn(name = "bo_groupe_id", referencedColumnName = "ag_id", nullable = false)

@@ -1,7 +1,6 @@
 package entity;
 
 import javax.persistence.*;
-import java.sql.Date;
 import java.util.Objects;
 
 @Entity
@@ -16,7 +15,7 @@ public class ArtisteGroupe {
     private String nom;
     @Basic
     @Column(name = "annee_sortie")
-    private Date anneeSortie;
+    private int anneeSortie;
 
     public long getAgId() {
         return agId;
@@ -34,11 +33,11 @@ public class ArtisteGroupe {
         this.nom = nom;
     }
 
-    public Date getAnneeSortie() {
+    public int getAnneeSortie() {
         return anneeSortie;
     }
 
-    public void setAnneeSortie(Date anneeSortie) {
+    public void setAnneeSortie(int anneeSortie) {
         this.anneeSortie = anneeSortie;
     }
 
@@ -47,7 +46,7 @@ public class ArtisteGroupe {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ArtisteGroupe that = (ArtisteGroupe) o;
-        return agId == that.agId && Objects.equals(nom, that.nom) && Objects.equals(anneeSortie, that.anneeSortie);
+        return agId == that.agId && anneeSortie == that.anneeSortie && Objects.equals(nom, that.nom);
     }
 
     @Override

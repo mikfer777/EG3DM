@@ -16,7 +16,7 @@ public class Live {
     @Column(name = "lieuConcert")
     private String lieuConcert;
     @Basic
-    @Column(name = "live_groupe_id", insertable = false, updatable = false)
+    @Column(name = "live_groupe_id" , insertable = false, updatable = false)
     private Long liveGroupeId;
     @ManyToOne
     @JoinColumn(name = "live_groupe_id", referencedColumnName = "ag_id")

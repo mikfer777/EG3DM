@@ -16,9 +16,10 @@ public class Main {
             ArtisteGroupe artisteGroupe = new ArtisteGroupe();
             artisteGroupe.setAgId(8);
 
-            Date utilDate = new Date();
-            java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
-            artisteGroupe.setAnneeSortie(sqlDate);
+//            Date utilDate = new Date();
+//            java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
+            int years = 2020;
+            artisteGroupe.setAnneeSortie(years);
             artisteGroupe.setNom("ACDC");
             entityManager.merge(artisteGroupe);
             TypedQuery<Bo> boByQuery = entityManager.createNamedQuery("BOBy", Bo.class);
