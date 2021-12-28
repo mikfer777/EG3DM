@@ -13,9 +13,6 @@ public class ArtisteGroupe {
     @Basic
     @Column(name = "nom")
     private String nom;
-    @Basic
-    @Column(name = "annee_sortie")
-    private int anneeSortie;
 
     public long getAgId() {
         return agId;
@@ -33,24 +30,16 @@ public class ArtisteGroupe {
         this.nom = nom;
     }
 
-    public int getAnneeSortie() {
-        return anneeSortie;
-    }
-
-    public void setAnneeSortie(int anneeSortie) {
-        this.anneeSortie = anneeSortie;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ArtisteGroupe that = (ArtisteGroupe) o;
-        return agId == that.agId && anneeSortie == that.anneeSortie && Objects.equals(nom, that.nom);
+        return agId == that.agId && Objects.equals(nom, that.nom);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(agId, nom, anneeSortie);
+        return Objects.hash(agId, nom);
     }
 }

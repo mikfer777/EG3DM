@@ -2,7 +2,6 @@ package entity;
 
 import javax.persistence.*;
 import java.util.Objects;
-
 @NamedQuery(name = "BOBy", query = "SELECT b FROM Bo b where b.titreBo=?1")
 @Entity
 public class Bo {
@@ -17,8 +16,11 @@ public class Bo {
     @Column(name = "titre_bo")
     private String titreBo;
     @Basic
-    @Column(name = "bo_groupe_id", insertable = false, updatable = false)
+    @Column(name = "bo_groupe_id" , insertable = false, updatable = false)
     private long boGroupeId;
+    @Basic
+    @Column(name = "annee_sortie")
+    private Integer anneeSortie;
     @ManyToOne
     @JoinColumn(name = "bo_groupe_id", referencedColumnName = "ag_id", nullable = false)
     private ArtisteGroupe artisteGroupeByBoGroupeId;
@@ -55,17 +57,25 @@ public class Bo {
         this.boGroupeId = boGroupeId;
     }
 
+    public Integer getAnneeSortie() {
+        return anneeSortie;
+    }
+
+    public void setAnneeSortie(Integer anneeSortie) {
+        this.anneeSortie = anneeSortie;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Bo bo = (Bo) o;
-        return id == bo.id && boGroupeId == bo.boGroupeId && Objects.equals(titreFilm, bo.titreFilm) && Objects.equals(titreBo, bo.titreBo);
+        return id == bo.id && boGroupeId == bo.boGroupeId && Objects.equals(titreFilm, bo.titreFilm) && Objects.equals(titreBo, bo.titreBo) && Objects.equals(anneeSortie, bo.anneeSortie);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, titreFilm, titreBo, boGroupeId);
+        return Objects.hash(id, titreFilm, titreBo, boGroupeId, anneeSortie);
     }
 
     public ArtisteGroupe getArtisteGroupeByBoGroupeId() {

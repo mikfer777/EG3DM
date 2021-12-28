@@ -18,6 +18,9 @@ public class Live {
     @Basic
     @Column(name = "live_groupe_id" , insertable = false, updatable = false)
     private Long liveGroupeId;
+    @Basic
+    @Column(name = "annee_sortie")
+    private Integer anneeSortie;
     @ManyToOne
     @JoinColumn(name = "live_groupe_id", referencedColumnName = "ag_id")
     private ArtisteGroupe artisteGroupeByLiveGroupeId;
@@ -54,17 +57,25 @@ public class Live {
         this.liveGroupeId = liveGroupeId;
     }
 
+    public Integer getAnneeSortie() {
+        return anneeSortie;
+    }
+
+    public void setAnneeSortie(Integer anneeSortie) {
+        this.anneeSortie = anneeSortie;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Live live = (Live) o;
-        return id == live.id && Objects.equals(titreAlbum, live.titreAlbum) && Objects.equals(lieuConcert, live.lieuConcert) && Objects.equals(liveGroupeId, live.liveGroupeId);
+        return id == live.id && Objects.equals(titreAlbum, live.titreAlbum) && Objects.equals(lieuConcert, live.lieuConcert) && Objects.equals(liveGroupeId, live.liveGroupeId) && Objects.equals(anneeSortie, live.anneeSortie);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, titreAlbum, lieuConcert, liveGroupeId);
+        return Objects.hash(id, titreAlbum, lieuConcert, liveGroupeId, anneeSortie);
     }
 
     public ArtisteGroupe getArtisteGroupeByLiveGroupeId() {
