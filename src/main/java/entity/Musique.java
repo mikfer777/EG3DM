@@ -3,6 +3,7 @@ package entity;
 import javax.persistence.*;
 import java.util.Objects;
 
+@NamedQuery(name = "MusiqueAll", query = "SELECT m FROM Musique m")
 @Entity
 public class Musique {
 //    @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -62,5 +63,15 @@ public class Musique {
     @Override
     public int hashCode() {
         return Objects.hash(id, nomGroupeOuArtiste, anneeSortie, titre);
+    }
+
+    @Override
+    public String toString() {
+        return "Musique{" +
+                "id=" + id +
+                ", nomGroupeOuArtiste='" + nomGroupeOuArtiste + '\'' +
+                ", anneeSortie=" + anneeSortie +
+                ", titre='" + titre + '\'' +
+                '}';
     }
 }

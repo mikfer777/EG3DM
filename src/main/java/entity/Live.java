@@ -3,6 +3,7 @@ package entity;
 import javax.persistence.*;
 import java.util.Objects;
 
+@NamedQuery(name = "LiveAll", query = "SELECT l FROM Live l")
 @Entity
 public class Live {
 //    @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -62,5 +63,15 @@ public class Live {
 
     public void setMusiqueByMusiqueId(Musique musiqueByMusiqueId) {
         this.musiqueByMusiqueId = musiqueByMusiqueId;
+    }
+
+    @Override
+    public String toString() {
+        return "Live{" +
+                "id=" + id +
+                ", lieuConcert='" + lieuConcert + '\'' +
+                ", musiqueId=" + musiqueId +
+                ", musiqueByMusiqueId=" + musiqueByMusiqueId +
+                '}';
     }
 }

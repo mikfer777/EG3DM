@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @NamedQuery(name = "BOBy", query = "SELECT b FROM Bo b where b.titreFilm=?1")
+@NamedQuery(name = "BOAll", query = "SELECT b FROM Bo b")
 @Entity
 public class Bo {
 //    @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -63,5 +64,15 @@ public class Bo {
 
     public void setMusiqueByMusiqueId(Musique musiqueByMusiqueId) {
         this.musiqueByMusiqueId = musiqueByMusiqueId;
+    }
+
+    @Override
+    public String toString() {
+        return "Bo{" +
+                "id=" + id +
+                ", musiqueId=" + musiqueId +
+                ", titreFilm='" + titreFilm + '\'' +
+                ", musiqueByMusiqueId=" + musiqueByMusiqueId +
+                '}';
     }
 }

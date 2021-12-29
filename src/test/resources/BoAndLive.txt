@@ -1,2 +1,6 @@
-BO;No Time to Die;Billie Eilish;2020;Mourir peut attendre
+BO;Skyfall;Adele;2012;Skyfall;
+BO;You Known My Name;Chris Cornell;2006;Casino Royale;
+BO;No Time to Die;Billie Eilish;2021;Mourir peut attendre
 BO;Writings on the Wall;Thomas Newman;2015;007 Spectre
+Live;U2;With Or Without You;2001;Boston
+Live;U2;Innocence + Experience;2015;Paris
