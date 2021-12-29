@@ -10,20 +10,14 @@ public class Live {
     @Column(name = "id")
     private long id;
     @Basic
-    @Column(name = "titre_album")
-    private String titreAlbum;
-    @Basic
-    @Column(name = "lieuConcert")
+    @Column(name = "lieu_concert")
     private String lieuConcert;
     @Basic
-    @Column(name = "live_groupe_id" , insertable = false, updatable = false)
-    private Long liveGroupeId;
-    @Basic
-    @Column(name = "annee_sortie")
-    private Integer anneeSortie;
+    @Column(name = "musique_id", insertable = false, updatable = false)
+    private Long musiqueId;
     @ManyToOne
-    @JoinColumn(name = "live_groupe_id", referencedColumnName = "ag_id")
-    private ArtisteGroupe artisteGroupeByLiveGroupeId;
+    @JoinColumn(name = "musique_id", referencedColumnName = "id")
+    private Musique musiqueByMusiqueId;
 
     public long getId() {
         return id;
@@ -31,14 +25,6 @@ public class Live {
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    public String getTitreAlbum() {
-        return titreAlbum;
-    }
-
-    public void setTitreAlbum(String titreAlbum) {
-        this.titreAlbum = titreAlbum;
     }
 
     public String getLieuConcert() {
@@ -49,20 +35,12 @@ public class Live {
         this.lieuConcert = lieuConcert;
     }
 
-    public Long getLiveGroupeId() {
-        return liveGroupeId;
+    public Long getMusiqueId() {
+        return musiqueId;
     }
 
-    public void setLiveGroupeId(Long liveGroupeId) {
-        this.liveGroupeId = liveGroupeId;
-    }
-
-    public Integer getAnneeSortie() {
-        return anneeSortie;
-    }
-
-    public void setAnneeSortie(Integer anneeSortie) {
-        this.anneeSortie = anneeSortie;
+    public void setMusiqueId(Long musiqueId) {
+        this.musiqueId = musiqueId;
     }
 
     @Override
@@ -70,19 +48,19 @@ public class Live {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Live live = (Live) o;
-        return id == live.id && Objects.equals(titreAlbum, live.titreAlbum) && Objects.equals(lieuConcert, live.lieuConcert) && Objects.equals(liveGroupeId, live.liveGroupeId) && Objects.equals(anneeSortie, live.anneeSortie);
+        return id == live.id && Objects.equals(lieuConcert, live.lieuConcert) && Objects.equals(musiqueId, live.musiqueId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, titreAlbum, lieuConcert, liveGroupeId, anneeSortie);
+        return Objects.hash(id, lieuConcert, musiqueId);
     }
 
-    public ArtisteGroupe getArtisteGroupeByLiveGroupeId() {
-        return artisteGroupeByLiveGroupeId;
+    public Musique getMusiqueByMusiqueId() {
+        return musiqueByMusiqueId;
     }
 
-    public void setArtisteGroupeByLiveGroupeId(ArtisteGroupe artisteGroupeByLiveGroupeId) {
-        this.artisteGroupeByLiveGroupeId = artisteGroupeByLiveGroupeId;
+    public void setMusiqueByMusiqueId(Musique musiqueByMusiqueId) {
+        this.musiqueByMusiqueId = musiqueByMusiqueId;
     }
 }

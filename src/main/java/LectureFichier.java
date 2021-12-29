@@ -1,4 +1,4 @@
-import entity.ArtisteGroupe;
+import entity.Musique;
 import entity.Bo;
 
 import javax.persistence.*;
@@ -8,15 +8,17 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
 
-
+/**
+ *
+ */
 public class LectureFichier {
 
     static List liste_entites = new LinkedList();
 
     public static void main(String[] args) {
         try {
-            int artiste_groupe_id = 0;
-            int bo_id = 0;
+            int musiqueId = 0;
+            int boId = 0;
             // A. Lecture au clavier du chemin du fichier texte BO & Live
 //            Scanner console = new Scanner(System.in);
             // C:\rootGit\EG3DM\src\test\resources\BoAndLive.txt
@@ -41,30 +43,30 @@ public class LectureFichier {
                 if (type.equals("BO")) {
                     System.out.println("entrée de type:  BO");
                     // Nom de Groupe ou artiste
-                    String titre_bo = data[1];
+                    String titreBO = data[1];
                     // Titre BO
-                    String groupe_artiste = data[2];
+                    String nomGroupeOuArtiste = data[2];
                     // Année de sortie
-                    String annee_sortie = data[3];
+                    String anneeSortie = data[3];
                     // titre film
-                    String titre_film = data[4];
+                    String titreFilm = data[4];
                     // Vérifier l'année de sortie
                     try {
-                        Integer annee = Integer.parseInt(annee_sortie);
+                        Integer annee = Integer.parseInt(anneeSortie);
                         // créer une entity artiste_groupe
-                        artiste_groupe_id = artiste_groupe_id + 1;
-                        ArtisteGroupe artisteGroupe = new ArtisteGroupe();
-                        artisteGroupe.setAgId(artiste_groupe_id);
-                        artisteGroupe.setNom(groupe_artiste);
-                        liste_entites.add(artisteGroupe);
+                        musiqueId = musiqueId + 1;
+                        Musique musique = new Musique();
+                        musique.setId(musiqueId);
+                        musique.setNomGroupeOuArtiste(nomGroupeOuArtiste);
+                        musique.setAnneeSortie(annee);
+                        musique.setTitre(titreBO);
+                        liste_entites.add(musique);
                         // créer une entity Bo
-                        bo_id = bo_id + 1;
+                        boId = boId + 1;
                         Bo bo = new Bo();
-                        bo.setId(bo_id);
-                        bo.setAnneeSortie(annee);
-                        bo.setTitreBo(titre_bo);
-                        bo.setTitreFilm(titre_film);
-                        bo.setArtisteGroupeByBoGroupeId(artisteGroupe);
+                        bo.setId(boId);
+                        bo.setTitreFilm(titreFilm);
+                        bo.setMusiqueByMusiqueId(musique);
                         liste_entites.add(bo);
 
                     } catch (NumberFormatException ex) {
@@ -105,22 +107,16 @@ public class LectureFichier {
         for (int i = 0; i < liste_entites.size(); i++) {
             System.out.println("Élément à l'index " + i + " = " + liste_entites.get(i));
         }
-        // D: Stocker les entités en BD
+        // D: Inserer ou mettre à jour les entités en BD
         Insertion_entites();
         // Relire les Bo et Live et les afficher
 
     }
 
-    private static boolean isStringInt(String s) {
-        try {
-            Integer.parseInt(s);
-            return true;
-        } catch (NumberFormatException ex) {
-            return false;
-        }
-    }
 
-
+    /**
+     *
+     */
     private static void Insertion_entites() {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
         EntityManager entityManager = entityManagerFactory.createEntityManager();

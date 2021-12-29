@@ -1,4 +1,4 @@
-import entity.ArtisteGroupe;
+import entity.Musique;
 import entity.Bo;
 
 import javax.persistence.*;
@@ -13,17 +13,19 @@ public class Main {
 
         try {
             transaction.begin();
-            ArtisteGroupe artisteGroupe = new ArtisteGroupe();
-            artisteGroupe.setAgId(8);
+            Musique musique = new Musique();
+            musique.setId(1);
 
 //            Date utilDate = new Date();
 //            java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
 
-            artisteGroupe.setNom("ACDC");
-            entityManager.merge(artisteGroupe);
+            musique.setTitre("lalala");
+            musique.setNomGroupeOuArtiste("U2");
+            musique.setAnneeSortie(2000);
+            entityManager.merge(musique);
             TypedQuery<Bo> boByQuery = entityManager.createNamedQuery("BOBy", Bo.class);
-            boByQuery.setParameter(1,"live");
-            for (Bo b :boByQuery.getResultList()){
+            boByQuery.setParameter(1, "007");
+            for (Bo b : boByQuery.getResultList()) {
                 System.out.println(b);
             }
 
