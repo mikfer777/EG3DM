@@ -22,17 +22,15 @@ public class TraitementFichier {
             int boId = 0;
             int liveId = 0;
             // A. Lecture au clavier du chemin du fichier texte BO & Live
-//            Scanner console = new Scanner(System.in);
+            Scanner console = new Scanner(System.in);
             // C:\rootGit\EG3DM\src\test\resources\BoAndLive.txt
             System.out.print("Entrez le chemin du fichier texte: ");
-//            String text_filepath = console.nextLine();
+            String text_filepath = console.nextLine();
             // Lire Le fichier d'entrée, si il n'existe pas sortie avec une IOException
-            String text_filepath = "C:\\rootGit\\EG3DM\\src\\test\\resources\\BoAndLive.txt";
             File file = new File(text_filepath);
             FileReader fr = new FileReader(file);
             BufferedReader br = new BufferedReader(fr);
-//            StringBuffer sb = new StringBuffer();
-            String line;
+            String line = null;
             while ((line = br.readLine()) != null) {
                 // Retourner chaque élement de la ligne séparé par un ";" dans un tableau
                 String[] data = line.split(";");
@@ -40,13 +38,13 @@ public class TraitementFichier {
 //                for (String val : data) {
 //                    System.out.println(val);
 //                }
-                // B: Analyser le type et vérifier l'année de sortie et stocker les instances d'entités adéquates
+                // B: Analyser le type et vérifier l'année de sortie et stocker les instances d'entités adéquates dans une liste
                 String type = data[0];
                 if (type.equals("BO")) {
                     System.out.println("entrée de type:  BO");
-                    // Nom de Groupe ou artiste
-                    String titreBO = data[1];
                     // Titre BO
+                    String titreBO = data[1];
+                    // Nom de Groupe ou artiste
                     String nomGroupeOuArtiste = data[2];
                     // Année de sortie
                     String anneeSortie = data[3];
@@ -111,8 +109,6 @@ public class TraitementFichier {
             }
             br.close();
             fr.close();
-//            System.out.println("Contenu du fichier: ");
-//            System.out.println(sb.toString());
         } catch (
                 IOException e) {
             System.out.println("ERREUR: fichier non trouvé");
@@ -124,7 +120,7 @@ public class TraitementFichier {
         }
         // D: Inserer ou mettre à jour les entités en BD
         Insertion_entites();
-        // Relire les Bo et Live et les afficher
+        // Relire les entités Musique Bo et Live et les afficher
         Lecture_entites();
 
     }
